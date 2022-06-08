@@ -11,5 +11,5 @@ phases:
   build:
     commands:
       - terraform --version
-      - terraform init -backend-config="./env/prod/backend.tf"
+      - terraform init 
       - terraform apply -var-file="./env/prod/prod.tfvars" -auto-approve
