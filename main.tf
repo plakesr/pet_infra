@@ -19,7 +19,7 @@ data "aws_ami" "petclinic-api" {
 
   filter {
     name   = "name"
-    values = ["petclinic-ui-ami"]
+    values = ["petclinic-rest-ami"]
   }
 }
 
