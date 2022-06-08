@@ -99,9 +99,9 @@ resource "aws_security_group_rule" "sg_egress_rule" {
 resource "aws_instance" "ec2" {
   for_each =  {
     ui    = { AMI_id = data.aws_ami.petclinic-ui.id, sg_name = "ui", private_subnet = "pvt_sub1" }
-    rest  = { AMI_id = data.aws_ami.petclinic-ui.id, sg_name = "rest", private_subnet = "pvt_sub1" }
+    rest  = { AMI_id = data.aws_ami.petclinic-api.id, sg_name = "rest", private_subnet = "pvt_sub1" }
     ui2   = { AMI_id = data.aws_ami.petclinic-ui.id, sg_name = "ui", private_subnet = "pvt_sub1" }
-    rest2 = { AMI_id = data.aws_ami.petclinic-ui.id, sg_name = "rest", private_subnet = "pvt_sub1" }
+    rest2 = { AMI_id = data.aws_ami.petclinic-api.id, sg_name = "rest", private_subnet = "pvt_sub1" }
   }
   ami                         = each.value.AMI_id
   instance_type               = var.instance_type
@@ -160,7 +160,7 @@ resource "aws_rds_cluster" "postgresql" {
   cluster_identifier      = "db-pg"
   source_region           = var.AWS_REGION
   engine                  = "aurora-postgresql"
-  engine_version          = "10.14"
+  engine_version          = "10.18"
   engine_mode             = "serverless"
   deletion_protection     = false
   availability_zones      = var.rds_az
